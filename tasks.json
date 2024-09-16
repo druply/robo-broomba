@@ -1,0 +1,22 @@
+{
+    "taskinit": {
+        "call" : "DeviceInit",
+        "header" : "device.hpp"
+        
+    },
+    "taskdeinit": {
+        "call" : "DeviceDeInit",
+        "header" : "device.hpp"
+        
+    },
+    "rt-tasks": [
+        {
+            "task0" : "DeviceStep",
+            "rate" :  "1"            
+        },
+        {
+            "task0" : "AppSwc1",
+            "rate" :  "1"            
+        }
+    ]
+}

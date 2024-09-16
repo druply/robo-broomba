@@ -1,0 +1,10 @@
+Name,Type
+ultrasonic1,float
+ultrasonic2,float
+ultrasonic3,float
+ultrasonic4,float
+ultrasonic5,float
+encoder1,uint8
+encoder2,uint8
+steering,int8
+throttle,uint8

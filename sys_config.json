@@ -1,0 +1,9 @@
+{
+    "base-time" : "20",
+    
+    "sys-logger" : {
+        "debug" : "on",
+        "system" : "on"
+    },
+    "sys-timer" : "off"    
+}
