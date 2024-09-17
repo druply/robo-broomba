@@ -12,11 +12,9 @@
 extern "C" {
 #endif
 
-void app_swc1_init(void);
-void AppSwc1(void);
-void rte_input_swc1(void);
-void rte_output_swc1(void);
-void app_swc1_deinit(void);
+void MainInit(void);
+void MainApp(void);
+void MainDeInit(void);
 
 #ifdef __cplusplus
 	}

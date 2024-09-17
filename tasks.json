@@ -13,10 +13,6 @@
         {
             "task0" : "DeviceStep",
             "rate" :  "1"            
-        },
-        {
-            "task0" : "AppSwc1",
-            "rate" :  "1"            
         }
     ]
 }

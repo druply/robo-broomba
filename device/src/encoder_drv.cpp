@@ -21,8 +21,8 @@
 /*======================
 		VARIABLES
 =======================*/
-encoderCounter_T encoder1_ctr;
-encoderCounter_T encoder2_ctr;
+encoderCounter_T encoder1_ctr; // counter for wheel 1
+encoderCounter_T encoder2_ctr; // counter for wheel 2
 
 
 /*======================
@@ -32,6 +32,8 @@ encoderCounter_T encoder2_ctr;
 /**
 * Interrupt function for
 * encoder 1
+* This function gets called everytime there is an interrupt
+* caused by the encoder
 */
 void encoder1Int(void) {
     
@@ -49,6 +51,8 @@ void encoder1Int(void) {
 /**
 * Interrupt function for
 * encoder 2
+* This function gets called everytime there is an interrupt
+* caused by the encoder
 */
 void encoder2Int(void) {
     
