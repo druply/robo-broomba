@@ -638,7 +638,7 @@ if __name__=="__main__":
     cpp_file_body += '\n'
     cpp_file_body += '#include "system_types.hpp"\n'
     cpp_file_body += '#include "sys_tasks.hpp"\n'
-    cpp_file_body += '#include "app_swc.hpp"\n'
+    cpp_file_body += '#include "main_app.hpp"\n'
     cpp_file_body += '#include "sys_timer.hpp"\n'
     cpp_file_body += '#ifdef ENABLE_SYS_TIMER\n'
     cpp_file_body += '#include "sys_logger.hpp"\n'

@@ -28,8 +28,11 @@ static void rte_input_swc1(void) {
 
 static void rte_output_swc1(void) {
 	//bind rte signals with swc output signals.
-	DataPoolWriteRightMotorThrottle(60);
-	DataPoolWriteLeftMotorThrottle(60);
+	DataPoolWriteRightMotorThrottle(0);
+	DataPoolWriteLeftMotorThrottle(0);
+	
+	std::cout << "right motor: " <<  DataPoolReadRightMotorThrottle() << std::endl;
+	std::cout << "left motor2: " <<  DataPoolReadLeftMotorThrottle() << std::endl;
 }
 
 void MainApp(void) {

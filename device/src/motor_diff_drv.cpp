@@ -114,10 +114,10 @@ drivers_response_T motorDrvInit(void) {
 	SystemLog("configuring wheel outputs");
 	pinMode(LEFT_MOTOR_PIN1, OUTPUT);
 	pinMode(LEFT_MOTOR_PIN2, OUTPUT);
-	//pinMode(RIGHT_MOTOR_PIN1, OUTPUT);
-	//pinMode(RIGHT_MOTOR_PIN2, OUTPUT);
+	pinMode(RIGHT_MOTOR_PIN1, OUTPUT);
+	pinMode(RIGHT_MOTOR_PIN2, OUTPUT);
 
-	//setRightMotorThrottle(0);
+	setRightMotorThrottle(0);
 	setLeftMotorThrottle(0);
 
 	if (init_error == false) {
@@ -170,9 +170,21 @@ void setLeftMotorBackward(void) {
 }
 
 void setRightMotorThrottle(uint8_t value) {
-	setPWM(RIGHT_MOTOR_PWM,value);
+	int new_value; // new value
+	new_value = (int)value*41; // convert precentage value to pwm value
+	// boundary check
+	if (new_value > 4095) {
+		new_value = 4095;
+	}
+	setPWM(RIGHT_MOTOR_PWM,new_value);
 }
 
 void setLeftMotorThrottle(uint8_t value) {
-	setPWM(LEFT_MOTOR_PWM,value);
+	int new_value; // new value
+	new_value = (int)value*41; // convert precentage value to pwm value
+	// boundary check
+	if (new_value > 4095) {
+		new_value = 4095;
+	}
+	setPWM(LEFT_MOTOR_PWM,new_value);
 }

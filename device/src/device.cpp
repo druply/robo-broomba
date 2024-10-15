@@ -53,7 +53,9 @@ void DeviceInit(void) {
 }
 
 static void readSensorData(void) {
+    /* Write encoder 1 value to datapool */
     DataPoolWriteEncoderCounter1(encoder1_ctr);
+    /* Write encoder 2 value to datapool */
     DataPoolWriteEncoderCounter2(encoder2_ctr);
 
 }

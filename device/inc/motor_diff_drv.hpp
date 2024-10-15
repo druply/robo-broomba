@@ -10,14 +10,15 @@
 		DEFINES
 =======================*/
 // define pins to be used for motors
-#define  LEFT_MOTOR_PIN1	    27
-#define  LEFT_MOTOR_PIN2	    28
-#define  RIGHT_MOTOR_PIN1	    0
-#define  RIGHT_MOTOR_PIN2	    2
+#define  LEFT_MOTOR_PIN1	    21 // IO5  BCM, 21 Wi
+#define  LEFT_MOTOR_PIN2	    22 // IO6  BCM, 22 Wi
+#define  RIGHT_MOTOR_PIN1	    5  // IO24 BCM, 5 Wi
+#define  RIGHT_MOTOR_PIN2	    6  // IO25 BCM, 6, Wi
 
-//define pins to be used for pwm board
-#define RIGHT_MOTOR_PWM    1
-#define LEFT_MOTOR_PWM     0
+/* define pins to be used for pwm board 
+*  must be a number between 1-16  */
+#define RIGHT_MOTOR_PWM    2
+#define LEFT_MOTOR_PWM     1
 
 // Register Definitions
 #define MODE1 				0x00			//Mode  register  1
