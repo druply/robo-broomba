@@ -19,8 +19,8 @@ throttle_T left_motor_throttle_dpool;
 gear_T gear_dpool;
 
 
-ecoderCounter_T encoder_counter1_dpool;
-ecoderCounter_T encoder_counter2_dpool;
+static ecoderCounter_T encoder_counter1_dpool;
+static ecoderCounter_T encoder_counter2_dpool;
 
 system_status_T system_status_dpool;
 system_status_T ecu_status_dpool;
@@ -29,21 +29,6 @@ velocity_T velocity_dpool;
 
 void DataPoolInit(void) {
 
-}
-
-emergency_break_T DataPoolReadEBreak(void) {
-  return ebreak_dpool;
-}
-void DataPoolWriteEBreak(emergency_break_T ebreak_local) {
-  ebreak_dpool = ebreak_local;
-}
-
-
-steer_T DataPoolReadSteering(void) {
-  return steering_dpool;
-}
-void DataPoolWriteSteering(steer_T steering_local) {
-  steering_dpool = steering_local;
 }
 
 /*
@@ -62,6 +47,41 @@ throttle_T DataPoolReadLeftMotorThrottle(void) {
 void DataPoolWriteLeftMotorThrottle(throttle_T throttle_local) {
   left_motor_throttle_dpool = throttle_local;
 }
+
+/*
+* Encoder signals
+*/
+ecoderCounter_T DataPoolReadEncoderCounter1(void) {
+  return encoder_counter1_dpool;
+}
+void DataPoolWriteEncoderCounter1(ecoderCounter_T encoder_counter1_local) {
+  encoder_counter1_dpool = encoder_counter1_local;
+}
+ecoderCounter_T DataPoolReadEncoderCounter2(void) {
+  return encoder_counter2_dpool;
+}
+void DataPoolWriteEncoderCounter2(ecoderCounter_T encoder_counter2_local) {
+  encoder_counter2_dpool = encoder_counter2_local;
+}
+
+
+
+
+emergency_break_T DataPoolReadEBreak(void) {
+  return ebreak_dpool;
+}
+void DataPoolWriteEBreak(emergency_break_T ebreak_local) {
+  ebreak_dpool = ebreak_local;
+}
+
+
+steer_T DataPoolReadSteering(void) {
+  return steering_dpool;
+}
+void DataPoolWriteSteering(steer_T steering_local) {
+  steering_dpool = steering_local;
+}
+
 
 
 
@@ -150,21 +170,6 @@ void DataPoolWriteFcUltrasonicsStatus(sensor_status_T fc_usonic_status_local) {
   fc_usonic_status_dpool = fc_usonic_status_local;
 }
 
-/*
-* Encoder signals
-*/
-ecoderCounter_T DataPoolReadEncoderCounter1(void) {
-  return encoder_counter1_dpool;
-}
-void DataPoolWriteEncoderCounter1(ecoderCounter_T encoder_counter1_local) {
-  encoder_counter1_dpool = encoder_counter1_local;
-}
-ecoderCounter_T DataPoolReadEncoderCounter2(void) {
-  return encoder_counter2_dpool;
-}
-void DataPoolWriteEncoderCounter2(ecoderCounter_T encoder_counter2_dpool) {
-  encoder_counter2_dpool = encoder_counter2_dpool;
-}
 
 
 // Safety Monitor

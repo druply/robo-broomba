@@ -47,8 +47,8 @@ void DeviceInit(void) {
     }
 
     // set direction of motors
-    setLeftMotorForward();
-    setRightMotorForward();
+    setLeftMotorBackward();
+    setRightMotorBackward();
     
 }
 
@@ -110,6 +110,10 @@ void DeviceStep(void) {
 
     }
 
+}
+
+void DeviceLoop(void) {
+readEncoders();
 }
 
 void DeviceDeInit(void) {

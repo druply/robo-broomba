@@ -10,8 +10,8 @@
 		DEFINES
 =======================*/
 // define pins to be used
-#define  _ENCODER1_IN	    27
-#define  _ENCODER2_IN	    28
+#define  _ENCODER1_IN	    0 // 17 BCM, 0 wiring
+#define  _ENCODER2_IN	    1 // 18 BCM, 1 wiring
 
 /*======================
 		VARIABLES
@@ -23,5 +23,5 @@ extern encoderCounter_T encoder2_ctr;
 		FUNCTIONS
 =======================*/
 drivers_response_T encoderDrvInit(void);
-
+void readEncoders(void);
 #endif // _ENCODER_DRV_INCLUDED_

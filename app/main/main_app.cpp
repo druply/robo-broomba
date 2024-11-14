@@ -18,6 +18,7 @@ void MainInit(void) {
 	// initialize throttle for motors
 	DataPoolWriteRightMotorThrottle(0);
 	DataPoolWriteLeftMotorThrottle(0);
+
 }
 
 static void rte_input_swc1(void) {
@@ -28,11 +29,10 @@ static void rte_input_swc1(void) {
 
 static void rte_output_swc1(void) {
 	//bind rte signals with swc output signals.
-	DataPoolWriteRightMotorThrottle(0);
-	DataPoolWriteLeftMotorThrottle(0);
+
 	
 	std::cout << "right motor: " <<  DataPoolReadRightMotorThrottle() << std::endl;
-	std::cout << "left motor2: " <<  DataPoolReadLeftMotorThrottle() << std::endl;
+	std::cout << "left motor: " <<  DataPoolReadLeftMotorThrottle() << std::endl;
 }
 
 void MainApp(void) {
@@ -41,6 +41,7 @@ void MainApp(void) {
     // read inputs from rte
 	rte_input_swc1();
 	std::cout << "swc step" << std::endl;
+
 	//write outputs to rte
 	rte_output_swc1();
     

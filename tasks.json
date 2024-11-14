@@ -14,5 +14,11 @@
             "task0" : "DeviceStep",
             "rate" :  "1"            
         }
+    ],
+    "nrt-tasks": [
+        {
+            "task0" : "DeviceLoop",
+            "rate" :  "1"          
+        }
     ]
 }

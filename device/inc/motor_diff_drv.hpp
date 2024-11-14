@@ -10,10 +10,10 @@
 		DEFINES
 =======================*/
 // define pins to be used for motors
-#define  LEFT_MOTOR_PIN1	    21 // IO5  BCM, 21 Wi
-#define  LEFT_MOTOR_PIN2	    22 // IO6  BCM, 22 Wi
-#define  RIGHT_MOTOR_PIN1	    5  // IO24 BCM, 5 Wi
-#define  RIGHT_MOTOR_PIN2	    6  // IO25 BCM, 6, Wi
+#define  LEFT_MOTOR_PIN1	    7 // IO4  BCM, 7 Wi
+#define  LEFT_MOTOR_PIN2	    2 // IO27  BCM, 2 Wi
+#define  RIGHT_MOTOR_PIN1	    29  // IO21 BCM, 29 Wi
+#define  RIGHT_MOTOR_PIN2	    23  // IO13 BCM, 23, Wi
 
 /* define pins to be used for pwm board 
 *  must be a number between 1-16  */

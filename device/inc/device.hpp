@@ -9,5 +9,6 @@
 void DeviceInit(void);
 void DeviceStep(void);
 void DeviceDeInit(void);
+void DeviceLoop(void) ;
 
 #endif //_DEVICE_INCLUDED_

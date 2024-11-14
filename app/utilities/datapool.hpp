@@ -4,6 +4,19 @@
 #include "datatypes.hpp"
 
 void DataPoolInit(void);
+
+throttle_T DataPoolReadRightMotorThrottle(void);
+void DataPoolWriteRightMotorThrottle(throttle_T throttle_local);
+throttle_T DataPoolReadLeftMotorThrottle(void);
+void DataPoolWriteLeftMotorThrottle(throttle_T throttle_local);
+
+ecoderCounter_T DataPoolReadEncoderCounter1(void);
+void DataPoolWriteEncoderCounter1(ecoderCounter_T encoder_counter1_local);
+ecoderCounter_T DataPoolReadEncoderCounter2(void);
+void DataPoolWriteEncoderCounter2(ecoderCounter_T encoder_counter2_dpool);
+
+
+
 emergency_break_T DataPoolReadEBreak(void);
 void DataPoolWriteEBreak(emergency_break_T ebreak_local);
 
@@ -34,18 +47,10 @@ void DataPoolWriteFcUltrasonicsStatus(sensor_status_T fc_usonic_status_local);
 steer_T DataPoolReadSteering(void);
 void DataPoolWriteSteering(steer_T steering_local);
 
-throttle_T DataPoolReadRightMotorThrottle(void);
-void DataPoolWriteRightMotorThrottle(throttle_T throttle_local);
-
-throttle_T DataPoolReadLeftMotorThrottle(void);
-void DataPoolWriteLeftMotorThrottle(throttle_T throttle_local);
 
 gear_T DataPoolReadGear(void);
 void DataPoolWriteGear(gear_T gear_local);
-ecoderCounter_T DataPoolReadEncoderCounter1(void);
-void DataPoolWriteEncoderCounter1(ecoderCounter_T encoder_counter1_local);
-ecoderCounter_T DataPoolReadEncoderCounter2(void);
-void DataPoolWriteEncoderCounter2(ecoderCounter_T encoder_counter2_dpool);
+
 system_status_T DataPoolReadSystemStatus(void);
 void DataPoolWriteSystemStatus(system_status_T system_status_local);
 system_status_T DataPoolReadEcuStatus(void);

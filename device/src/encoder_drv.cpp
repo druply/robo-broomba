@@ -38,13 +38,23 @@ encoderCounter_T encoder2_ctr; // counter for wheel 2
 void encoder1Int(void) {
     
 	int encoder1_pin;
+	//int encoder2_pin;
 	encoder1_pin = digitalRead(_ENCODER1_IN);
+	//encoder2_pin = digitalRead(_ENCODER2_IN);
 
 	//only increase if the input is in the right logical level
-	if(encoder1_pin == _PIN_HIGH_) {
+	//if(encoder1_pin == _PIN_HIGH_) {
 		// increase encoder counter
 		encoder1_ctr++;
+		SystemLog("encoder 1 interrupt");
+	//}
+	/*
+		if(encoder2_pin == _PIN_HIGH_) {
+		// increase encoder counter
+    	encoder2_ctr++;
+
 	}
+	*/
 	
 }
 
@@ -56,14 +66,57 @@ void encoder1Int(void) {
 */
 void encoder2Int(void) {
     
+	//int encoder1_pin;
 	int encoder2_pin;
 	encoder2_pin = digitalRead(_ENCODER2_IN);
+	//encoder1_pin = digitalRead(_ENCODER1_IN);
 	
 	//only increase if the input is in the right logical level
-	if(encoder2_pin == _PIN_HIGH_) {
+	//if(encoder2_pin == _PIN_HIGH_) {
 		// increase encoder counter
     	encoder2_ctr++;
+		SystemLog("encoder 2 interrupt");
 
+	//}
+/*
+		if(encoder1_pin == _PIN_HIGH_) {
+		// increase encoder counter
+		encoder1_ctr++;
+	}
+	*/
+}
+
+
+void readEncoders(void) {
+	int encoder1_pin;
+	int encoder2_pin;
+	static int prev_encoder1_pin;
+	static int prev_encoder2_pin;
+
+	encoder1_pin = digitalRead(_ENCODER1_IN);
+	encoder2_pin = digitalRead(_ENCODER2_IN);
+
+	if(encoder2_pin != prev_encoder2_pin) {
+
+		if(encoder2_pin == _PIN_HIGH_) { 
+			// increase encoder counter
+    		encoder2_ctr++;
+			//SystemLog("encoder 2 interrupt");
+		}
+
+		
+		prev_encoder2_pin = encoder2_pin;
+	}
+
+	if(encoder1_pin != prev_encoder1_pin) {
+			if(encoder1_pin == _PIN_HIGH_) { 
+				// increase encoder counter
+				encoder1_ctr++;
+				//SystemLog("encoder 1 interrupt");
+			}
+			prev_encoder1_pin = encoder1_pin;
+
+		
 	}
 }
 
@@ -75,7 +128,7 @@ drivers_response_T encoderDrvInit(void) {
 	pinMode(_ENCODER2_IN, INPUT); // Set Pin as input to write value from it.
 
 
-
+/*
     if (wiringPiISR(_ENCODER2_IN, INT_EDGE_RISING, &encoder2Int) < 0 ) {
         SystemLog("error configuring isr");
 		init_error = true;
@@ -95,6 +148,7 @@ drivers_response_T encoderDrvInit(void) {
 		SystemLog("encoder 1 configured");
 	}
 
+*/
 	if (init_error == false) {
 		return driver_ok;
 	}
