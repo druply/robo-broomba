@@ -65,6 +65,28 @@ void DataPoolWriteEncoderCounter2(ecoderCounter_T encoder_counter2_local) {
 }
 
 
+velocity_T DataPoolReadEgoVelocity(void) {
+  return ego_velocity_dpool;
+}
+
+void DataPoolWriteEgoVelocity(velocity_T ego_velocity_local) {
+  ego_velocity_dpool = ego_velocity_local;
+}
+
+distance_T DataPoolReadEgoDistance(void) {
+  return ego_distance_dpool;
+}
+
+void DataPoolWriteEgoDistance(distance_T ego_distance_local) {
+  ego_distance_dpool = ego_distance_local;
+}
+
+
+
+
+
+
+
 
 
 emergency_break_T DataPoolReadEBreak(void) {
@@ -105,21 +127,7 @@ void DataPoolWriteVelocityCmd(velocity_T velocity_cmd_local) {
 
 //Perception
 
-velocity_T DataPoolReadEgoVelocity(void) {
-  return ego_velocity_dpool;
-}
 
-void DataPoolWriteEgoVelocity(velocity_T ego_velocity_local) {
-  ego_velocity_dpool = ego_velocity_local;
-}
-
-distance_T DataPoolReadEgoDistance(void) {
-  return ego_distance_dpool;
-}
-
-void DataPoolWriteEgoDistance(distance_T ego_distance_local) {
-  ego_distance_dpool = ego_distance_local;
-}
 
 
 distance_T DataPoolReadFrUltrasonicsDistance(void) {
@@ -169,7 +177,6 @@ sensor_status_T DataPoolReadFcUltrasonicsStatus(void) {
 void DataPoolWriteFcUltrasonicsStatus(sensor_status_T fc_usonic_status_local) {
   fc_usonic_status_dpool = fc_usonic_status_local;
 }
-
 
 
 // Safety Monitor

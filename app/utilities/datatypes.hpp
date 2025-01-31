@@ -103,7 +103,7 @@ typedef volatile uint32 ecoderCounter_T;
 typedef enum {
     right = 0,
     left
-}encoder_T;
+} encoder_T;
 
 
 /// Actuator types//////

@@ -133,8 +133,8 @@ drivers_response_T motorDrvInit(void) {
 void setLeftMotorForward(void) {
 
 #ifndef _WIN32	
-	digitalWrite(LEFT_MOTOR_PIN1, LOW);
-	digitalWrite(LEFT_MOTOR_PIN2, HIGH);
+	digitalWrite(LEFT_MOTOR_PIN1, HIGH);
+	digitalWrite(LEFT_MOTOR_PIN2, LOW);
 #endif
 
 }
@@ -163,8 +163,9 @@ void setRightMotorBackward(void) {
 void setLeftMotorBackward(void) {
 
 #ifndef _WIN32	
-	digitalWrite(LEFT_MOTOR_PIN1, HIGH);
-	digitalWrite(LEFT_MOTOR_PIN2, LOW);
+
+		digitalWrite(LEFT_MOTOR_PIN1, LOW);
+	digitalWrite(LEFT_MOTOR_PIN2, HIGH);
 #endif
 
 }

@@ -15,16 +15,18 @@ void DataPoolWriteEncoderCounter1(ecoderCounter_T encoder_counter1_local);
 ecoderCounter_T DataPoolReadEncoderCounter2(void);
 void DataPoolWriteEncoderCounter2(ecoderCounter_T encoder_counter2_dpool);
 
+velocity_T DataPoolReadEgoVelocity(void);
+void DataPoolWriteEgoVelocity(velocity_T ego_velocity_local);
+distance_T DataPoolReadEgoDistance(void);
+void DataPoolWriteEgoDistance(distance_T ego_distance_local);
+
+
 
 
 emergency_break_T DataPoolReadEBreak(void);
 void DataPoolWriteEBreak(emergency_break_T ebreak_local);
 
-velocity_T DataPoolReadEgoVelocity(void);
-void DataPoolWriteEgoVelocity(velocity_T ego_velocity_local);
 
-distance_T DataPoolReadEgoDistance(void);
-void DataPoolWriteEgoDistance(distance_T ego_distance_local);
 
 distance_T DataPoolReadFrUltrasonicsDistance(void);
 void DataPoolWriteFrUltrasonicsDistance(distance_T fr_usonic_distance_local);
