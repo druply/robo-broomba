@@ -6,6 +6,8 @@ static emergency_break_T ebreak_dpool;
 static velocity_T ego_velocity_dpool;
 static distance_T ego_distance_dpool;
 
+static angle_T ego_angle_dpool;
+
 static distance_T fr_usonic_distance_dpool;
 static distance_T fc_usonic_distance_dpool;
 static distance_T fl_usonic_distance_dpool;
@@ -81,6 +83,13 @@ void DataPoolWriteEgoDistance(distance_T ego_distance_local) {
   ego_distance_dpool = ego_distance_local;
 }
 
+angle_T DataPoolReadEgoAngle(void) {
+  return ego_angle_dpool;
+}
+
+void DataPoolWriteEgoAngle(angle_T ego_angle_local) {
+  ego_angle_dpool = ego_angle_local;
+}
 
 
 

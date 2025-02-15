@@ -9,6 +9,7 @@ include_directories(core/inc)
 include_directories(device/inc)
 include_directories(gen)
 include_directories(app/main)
+include_directories(app/test)
 include_directories(app/utilities)
 include_directories(app/state-estimation)
 
@@ -20,6 +21,7 @@ file(GLOB SOURCES "*.cpp",
                   "gen/*.cpp", 
                   "device/src/*.cpp",
                   "app/main/*.cpp",
+                  "app/test/*.cpp",
                   "app/utilities/*.cpp",
                   "app/state-estimation/*.cpp")
 

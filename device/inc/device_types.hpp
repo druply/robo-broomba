@@ -8,7 +8,8 @@
 /*======================
 		DEFINES
 =======================*/
-#define  _PIN_HIGH_  1
+#define  _PIN_HIGH_  1U
+#define  _PIN_LOW_   0U
 
 /*======================
 		VARIABLES

@@ -1,5 +1,5 @@
 {
-    "base-time" : "20",
+    "base-time" : "10",
     
     "sys-logger" : {
         "debug" : "on",

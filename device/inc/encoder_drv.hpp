@@ -13,6 +13,8 @@
 #define  _ENCODER1_IN	    0 // 17 BCM, 0 wiring
 #define  _ENCODER2_IN	    1 // 18 BCM, 1 wiring
 
+#define ENCODER_DELAY_READ  2
+
 /*======================
 		VARIABLES
 =======================*/

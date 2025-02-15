@@ -12,13 +12,11 @@
     "rt-tasks": [
         {
             "task0" : "DeviceStep",
-            "rate" :  "1"            
-        }
-    ],
-    "nrt-tasks": [
+            "rate" :  "2"            
+        },
         {
             "task0" : "DeviceLoop",
-            "rate" :  "1"          
+            "rate" :  "1"            
         }
     ]
 }

@@ -47,8 +47,11 @@ void DeviceInit(void) {
     }
 
     // set direction of motors
-    setLeftMotorBackward();
-    setRightMotorBackward();
+    //setLeftMotorBackward();
+    //setRightMotorBackward();
+
+    setLeftMotorForward();
+    setRightMotorForward();
     
 }
 
@@ -65,7 +68,9 @@ static void writeSensorData(void) {
     setLeftMotorThrottle ( DataPoolReadLeftMotorThrottle()  );
 }
 
-
+/*
+Main function for device 
+*/
 void DeviceStep(void) {
     
     static uint8_t ctr_tmp = 0;
@@ -112,8 +117,15 @@ void DeviceStep(void) {
 
 }
 
+/*
+Non real time task to read encoders in a loop
+*/
 void DeviceLoop(void) {
-readEncoders();
+ 
+ if( (DataPoolReadRightMotorThrottle() != 0) || (DataPoolReadLeftMotorThrottle()!= 0) ) {
+    readEncoders();
+ }
+
 }
 
 void DeviceDeInit(void) {

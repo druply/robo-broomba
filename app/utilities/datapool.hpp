@@ -17,10 +17,12 @@ void DataPoolWriteEncoderCounter2(ecoderCounter_T encoder_counter2_dpool);
 
 velocity_T DataPoolReadEgoVelocity(void);
 void DataPoolWriteEgoVelocity(velocity_T ego_velocity_local);
+
 distance_T DataPoolReadEgoDistance(void);
 void DataPoolWriteEgoDistance(distance_T ego_distance_local);
 
-
+angle_T DataPoolReadEgoAngle(void);
+void DataPoolWriteEgoAngle(angle_T ego_angle_local);
 
 
 emergency_break_T DataPoolReadEBreak(void);

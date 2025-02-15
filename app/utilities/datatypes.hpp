@@ -5,6 +5,8 @@
 
 typedef double distance_T;
 typedef double velocity_T;
+typedef double angular_velocity_T;
+typedef double time_T;
 
 typedef enum  {
     busy = 0,
