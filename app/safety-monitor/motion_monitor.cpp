@@ -1,5 +1,6 @@
 #include "motion_monitor.hpp"
 #include "motion_control.hpp"
+#include "datapool.hpp"
 #include <vector>
 
 
@@ -7,7 +8,8 @@
 state array
 */
 std::vector<test_init_states_T> init_states = {
-    {testInitStates::stop, testInitEvents::move_forward, testInitStates::forward}
+    {testInitStates::stop, testInitEvents::move_forward, testInitStates::forward},
+    {testInitStates::forward, testInitEvents::pass, testInitStates::forward}
 };
 
 
@@ -32,16 +34,54 @@ static void transitionState(void) {
     }
 }
 
-static SystemEvent moveForward(void) {
+static testInitEvents moveForward(void) {
     
-    SystemEvent event_res;
+    testInitEvents event_res;
+    ecoderCounter_T encoder1;
+    ecoderCounter_T encoder2;
+    static ecoderCounter_T prev_encoder1;
+    static ecoderCounter_T prev_encoder2;
+    distance_T distance;
+    static int valid_state_ctr = 0;
+    static int invalid_state_ctr = 0;
+
     motion_cmd.action = action_E::move;
     motion_cmd.gear = gear_E::forward;
     motion_cmd.velocity = 0.2;
     motion_cmd.angle = 0;
-    event_res = SystemEvent::wait;
+
+    event_res = testInitEvents::null;
 
 
+    encoder1 = DataPoolReadEncoderCounter1();
+    encoder2 = DataPoolReadEncoderCounter2();
+
+    distance = DataPoolReadEgoDistance();
+
+
+    if ( (prev_encoder1 != encoder1) &&
+         (prev_encoder2 != encoder2) &&
+        (DataPoolReadRightMotorThrottle() > 0.0) &&
+        (DataPoolReadLeftMotorThrottle() > 0.0) )  
+    {
+        if (distance >= 0.3) {
+            event_res = testInitEvents::pass;
+        }
+        invalid_state_ctr = 0;
+    }
+    else 
+    {
+        if ( (DataPoolReadRightMotorThrottle() == 0.0) ||
+             (DataPoolReadLeftMotorThrottle() == 0.0) ) 
+        {
+            invalid_state_ctr++;
+        }
+       
+    }
+
+    if (invalid_state_ctr == 50) {
+        event_res = testInitEvents::failed;
+    }
 
     return event_res;
 }
@@ -75,7 +115,8 @@ SystemEvent testInitStep(void) {
             break;
 
         case testInitStates::forward:
-            system_event_res = moveForward();
+            system_event_res = SystemEvent::wait;    
+            local_event = moveForward();
             
             break;
 

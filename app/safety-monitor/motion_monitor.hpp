@@ -9,6 +9,7 @@ enum class testInitEvents {
     rotate_left,
     finish,
     failed,
+    pass,
     null
 };
 
