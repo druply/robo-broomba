@@ -173,7 +173,7 @@ void readEncoders(void) {
 	}
 }
 
-drivers_response_T encoderDrvInit(void) {
+drivers_response_E encoderDrvInit(void) {
 	bool init_error = false;
 
 	// initialize pins
@@ -208,9 +208,9 @@ drivers_response_T encoderDrvInit(void) {
     */
    
 	if (init_error == false) {
-		return driver_ok;
+		return drivers_response_E::ok;
 	}
 	else {
-		return driver_init_error;
+		return drivers_response_E::init_error;
 	}
 }

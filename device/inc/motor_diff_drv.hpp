@@ -47,7 +47,7 @@
 /*======================
 		FUNCTIONS
 =======================*/
-drivers_response_T motorDrvInit(void);
+drivers_response_E motorDrvInit(void);
 void setLeftMotorForward(void);
 void setRightMotorForward(void);
 void setRightMotorBackward(void);

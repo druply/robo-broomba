@@ -24,6 +24,6 @@ extern encoderCounter_T encoder2_ctr;
 /*======================
 		FUNCTIONS
 =======================*/
-drivers_response_T encoderDrvInit(void);
+drivers_response_E encoderDrvInit(void);
 void readEncoders(void);
 #endif // _ENCODER_DRV_INCLUDED_

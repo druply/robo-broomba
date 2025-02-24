@@ -19,10 +19,10 @@ typedef volatile uint32 encoderCounter_T;
 /*======================
 		FUNCTIONS
 =======================*/
-typedef enum drivers_response_T{
-    driver_init_error = 0, // there was an error initialzing driver
-    driver_lost_comm, // there was communication error or sensor/actuator has failure
-	driver_ok  // everything is ok in driver
+enum class drivers_response_E {
+    init_error = 0, // there was an error initialzing driver
+    lost_comm, // there was communication error or sensor/actuator has failure
+	ok  // everything is ok in driver
 };
 
 #endif //_DEVICE_TYPES_INCLUDED_

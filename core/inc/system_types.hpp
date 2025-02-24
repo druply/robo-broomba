@@ -70,11 +70,17 @@ typedef volatile uint8		vuint8;  /*  8 bits */
 typedef volatile uint16		vuint16; /* 16 bits */
 typedef volatile uint32		vuint32; /* 32 bits */
 
-
+#ifndef ENABLE
 #define ENABLE		1U
-#define	TRUE		(uint8_t)1
-#define	FALSE		(uint8_t)0
+#endif
 
+#ifndef TRUE
+#define	TRUE		(uint8_t)1
+#endif
+
+#ifndef FALSE
+#define	FALSE		(uint8_t)0
+#endif
 
 
 #define Tx_OK			0

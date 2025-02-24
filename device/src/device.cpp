@@ -17,14 +17,15 @@
 #include "main_app.hpp"
 
 bool init_error;
-uint8_t state_curr = STATE_INIT;
+device_status_E state_curr;
 
 void DeviceInit(void) {
     
-    drivers_response_T init_res;
+    drivers_response_E init_res;
     std::cout << "device init" << std::endl;
 
     init_error = true; // set to fault by default
+    state_curr = device_status_E::init; // initializing device
     
     // When initialize wiring failed, print message to screen
 	if(wiringPiSetup() == -1) {
@@ -35,15 +36,15 @@ void DeviceInit(void) {
         SystemLog("wiringpi configured");
     }
 
-    if ((encoderDrvInit() == driver_init_error)||
-        (motorDrvInit()   == driver_init_error))  {
+    if ((encoderDrvInit() == drivers_response_E::init_error)||
+        (motorDrvInit()   == drivers_response_E::init_error))  {
             init_error = true; // error occured
-            state_curr = STATE_INIT_ERROR; //enter init error state
+            state_curr = device_status_E::error; //enter init error state
     }
     else {
         init_error = false;
         SystemLog("Drivers initialized succesfully");
-        state_curr = STATE_APP_INIT; // initialize apps
+        state_curr = device_status_E::app_init; // initialize apps
     }
 
     // set direction of motors
@@ -78,36 +79,36 @@ void DeviceStep(void) {
 
     switch(state_curr) {
         
-        case STATE_INIT:
+        case device_status_E::init:
           DeviceInit();
           if(init_error == true) {
-            state_curr = STATE_INIT_ERROR;
+            state_curr = device_status_E::error;
             SystemLog("Initialization error, restarting system");
           } 
           else {
-            state_curr = STATE_APP_INIT; // initialize apps
+            state_curr = device_status_E::app_init; // initialize apps
           }
           break;
 
-        case STATE_INIT_ERROR:
+        case device_status_E::error:
           ctr_tmp++;
           if (ctr_tmp == 150) {
-            state_curr = STATE_INIT; // restart state machine
+            state_curr = device_status_E::init; // restart state machine
             exception_local = sys_Restart; // restart system
             SetSystemException(exception_local);
           }
           break;
 
-        case STATE_RUN:
+        case device_status_E::ready :
             readSensorData(); // get sensor data
             MainApp(); // run main app
             writeSensorData(); // wrtie sensor/actuator data
 
             break;
 
-        case STATE_APP_INIT:
+        case device_status_E::app_init :
             MainInit(); // initialize app
-            state_curr = STATE_RUN; // run apps
+            state_curr = device_status_E::ready; // run apps
             break;
 
         default:

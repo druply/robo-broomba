@@ -8,13 +8,44 @@ typedef double velocity_T;
 typedef double angular_velocity_T;
 typedef double time_T;
 
-typedef enum  {
+enum class sensor_status_E {
     busy = 0,
     ready,
     skipped,
     error,
     offline
-} sensor_status_T;
+};
+
+enum class device_status_E {
+    init,
+    app_init,
+    ready,
+    error
+};
+
+enum class SystemEvent {
+    init_pass,
+    test_init_pass,
+    test_init_fail,
+    run_fail,
+    stop,
+    wait
+};
+
+enum class SystemState {
+	init,
+    test_init,
+	run,
+    diag,
+    deinit
+};
+
+typedef struct system_states_T {
+    SystemState current_state;
+    SystemEvent system_event;
+    SystemState next_state;
+};
+
 
 typedef double angle_T;
 typedef double reliability_T;
@@ -37,7 +68,7 @@ typedef struct {
     axis_T gyr_y;
     axis_T gyr_z;
     die_temperature_T  temperature;
-    sensor_status_T status;
+    sensor_status_E status;
 } imu_T;
 
 
@@ -63,6 +94,7 @@ struct  lidar_scan_S {
     reliability_T reliability;
 };
 
+
 typedef struct {
     struct lidar_scan_S lidar_scan[CX_MAX_LIDAR_POINTS];
     distance_T front_center;
@@ -75,13 +107,12 @@ typedef struct {
     distance_T front_left;
     distance_T nearest_object;
     lenght_of_data_T length;
-    sensor_status_T status;
+    sensor_status_E status;
 } lidar_T;
 
 
 
 ////**Ultrasonics ***/////
-
 typedef enum  {
     sensor1 = 0,
     sensor2,
@@ -94,7 +125,7 @@ typedef enum  {
 
 typedef struct {
     distance_T distance;
-    sensor_status_T status;
+    sensor_status_E status;
 } usonic_data_T;
 
 ////**** GPIO //////
@@ -112,10 +143,10 @@ typedef enum {
 typedef int steer_T;
 typedef double throttle_T;
 
-typedef enum {
-    gear_forward = 0,
-    gear_reverse
-} gear_T;
+enum class gear_E {
+    forward = 0,
+    reverse
+} ;
 
 typedef int pan_T;
 
@@ -138,12 +169,7 @@ typedef enum {
     sys_ready,
     sys_runinng,
     sys_error
-}system_status_T;
-
-typedef enum {
-    manuever_mode = 0,
-    free_mode
-} motion_control_mode_T;
+} system_status_T;
 
 typedef enum {
     invalid = 0,
@@ -168,6 +194,25 @@ typedef enum {
 typedef volatile int maneuver_T;
 typedef int counter_T;
 typedef int allow_transition_T;
+
+
+/*
+Motion control datatypes
+*/
+enum class action_E {
+    move,
+    rotate_right,
+    rotate_left,
+    stop
+};
+
+typedef struct motion_control_T {
+    action_E action;
+    gear_E gear;
+    velocity_T velocity;
+    angle_T angle;
+};
+
 
 
 #endif // STANDARD_TYPES_HPP_INCLUDED

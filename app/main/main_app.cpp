@@ -14,12 +14,22 @@
 #include "sys_mon.hpp"
 #include "main_test.hpp"
 #include "test_cfg.hpp"
+#include "state_handler.hpp"
+#include "motion_monitor.hpp"
+#include "motion_control.hpp"
 
-
+/*
+Initialize main app
+*/
 void MainInit(void) {
+
+	stateHandlerInit(); // initialize state handler
+	testInit(); // initalize testinit 
+	motionControlInit();
+	
 	// initialize throttle for motors
-	DataPoolWriteRightMotorThrottle(60);
-	DataPoolWriteLeftMotorThrottle(60);
+	DataPoolWriteRightMotorThrottle(0);
+	DataPoolWriteLeftMotorThrottle(0);
 
 	odometryInit();
 
@@ -35,6 +45,9 @@ static void rte_output_swc1(void) {
 
 }
 
+/*
+Main  application function
+*/
 void MainApp(void) {
 
 	#ifndef ENABLE_TEST
@@ -49,7 +62,10 @@ void MainApp(void) {
 		mainTest();
 
 	#else
-		// run main app
+		// run state handler
+		stateHandlerStep();
+        // motion control
+		motionControlStep();
 
 	#endif
 

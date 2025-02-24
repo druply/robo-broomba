@@ -62,7 +62,7 @@ static void calculateDistances(void) {
 
     angle = angle_velocity*delta_time + angle;
 
-    DataPoolWriteEgoAngle(angle);
+    DataPoolWriteEgoYawAngle(angle);
 
     x_velocity = ego_velocity*cos(angle);
     y_velocity = ego_velocity*sin(angle);
@@ -109,7 +109,7 @@ void odometryStep(void) {
     static int ctr_local = 0;
     
     // 100ms
-    if(ctr_local%5 == 0) {
+    if(ctr_local == 5) {
         // read encoders
         right_encoder_ctr = DataPoolReadEncoderCounter1();
         left_encoder_ctr = DataPoolReadEncoderCounter2();
@@ -118,9 +118,7 @@ void odometryStep(void) {
         // store previous encoder value
         right_encoder_ctr_prev = right_encoder_ctr;
         left_encoder_ctr_prev = left_encoder_ctr;
-    }
 
-    if (ctr_local == 500) {
         ctr_local = 0;
     }
 

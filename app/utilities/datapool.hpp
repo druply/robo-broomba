@@ -3,26 +3,55 @@
 
 #include "datatypes.hpp"
 
-void DataPoolInit(void);
-
+/*
+* Motor throttle signals
+*/
 throttle_T DataPoolReadRightMotorThrottle(void);
 void DataPoolWriteRightMotorThrottle(throttle_T throttle_local);
 throttle_T DataPoolReadLeftMotorThrottle(void);
 void DataPoolWriteLeftMotorThrottle(throttle_T throttle_local);
 
+/*
+* Encoder signals
+*/
 ecoderCounter_T DataPoolReadEncoderCounter1(void);
 void DataPoolWriteEncoderCounter1(ecoderCounter_T encoder_counter1_local);
 ecoderCounter_T DataPoolReadEncoderCounter2(void);
 void DataPoolWriteEncoderCounter2(ecoderCounter_T encoder_counter2_dpool);
 
+
+/*
+Perception
+*/
 velocity_T DataPoolReadEgoVelocity(void);
 void DataPoolWriteEgoVelocity(velocity_T ego_velocity_local);
+
+velocity_T DataPoolReadVelocityCmd(void);
+void DataPoolWriteVelocityCmd(velocity_T velocity_cmd_local);
 
 distance_T DataPoolReadEgoDistance(void);
 void DataPoolWriteEgoDistance(distance_T ego_distance_local);
 
-angle_T DataPoolReadEgoAngle(void);
-void DataPoolWriteEgoAngle(angle_T ego_angle_local);
+angle_T DataPoolReadEgoYawAngle(void);
+void DataPoolWriteEgoYawAngle(angle_T ego_angle_local);
+
+
+/*
+Motion control
+*/
+angle_T DataPoolReadSteeringAngle(void);
+void DataPoolWriteSteeringAngle(angle_T steering_local);
+
+SystemState DataPoolReadSystemStatus(void);
+void DataPoolWriteSystemStatus(SystemState system_status_local);
+
+gear_E DataPoolReadGear(void);
+void DataPoolWriteGear(gear_E gear_local);
+
+action_E DataPoolReadMotionActionCmd(void);
+void DataPoolWriteMotionActionCmd(action_E gear_local);
+
+
 
 
 emergency_break_T DataPoolReadEBreak(void);
@@ -30,35 +59,7 @@ void DataPoolWriteEBreak(emergency_break_T ebreak_local);
 
 
 
-distance_T DataPoolReadFrUltrasonicsDistance(void);
-void DataPoolWriteFrUltrasonicsDistance(distance_T fr_usonic_distance_local);
-
-distance_T DataPoolReadFlUltrasonicsDistance(void);
-void DataPoolWriteFlUltrasonicsDistance(distance_T fl_usonic_distance_local);
-
-distance_T DataPoolReadFcUltrasonicsDistance(void);
-void DataPoolWriteFcUltrasonicsDistance(distance_T fc_usonic_distance_local);
-
-sensor_status_T DataPoolReadFrUltrasonicsStatus(void);
-void DataPoolWriteFrUltrasonicsStatus(sensor_status_T fr_usonic_status_local);
-
-sensor_status_T DataPoolReadFlUltrasonicsStatus(void);
-void DataPoolWriteFlUltrasonicsStatus(sensor_status_T fl_usonic_status_local);
-
-sensor_status_T DataPoolReadFcUltrasonicsStatus(void);
-void DataPoolWriteFcUltrasonicsStatus(sensor_status_T fc_usonic_status_local);
-
-steer_T DataPoolReadSteering(void);
-void DataPoolWriteSteering(steer_T steering_local);
-
-
-gear_T DataPoolReadGear(void);
-void DataPoolWriteGear(gear_T gear_local);
-
-system_status_T DataPoolReadSystemStatus(void);
-void DataPoolWriteSystemStatus(system_status_T system_status_local);
 system_status_T DataPoolReadEcuStatus(void);
 void DataPoolWriteEcuStatus(system_status_T system_status_local);
-velocity_T DataPoolReadVelocityCmd(void);
-void DataPoolWriteVelocityCmd(velocity_T velocity_cmd_local);
+
 #endif //DATAPOOL_H_

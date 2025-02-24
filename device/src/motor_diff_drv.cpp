@@ -92,7 +92,7 @@ int getPWM(uint8_t led) {
 }
 
 
-drivers_response_T motorDrvInit(void) {
+drivers_response_E motorDrvInit(void) {
     // I2C addresses for PWM board and IMU
 	int pwm_address=0x40;
 	bool init_error = false;
@@ -121,10 +121,10 @@ drivers_response_T motorDrvInit(void) {
 	setLeftMotorThrottle(0);
 
 	if (init_error == false) {
-		return driver_ok;
+		return drivers_response_E::ok;
 	}
 	else {
-		return driver_init_error;
+		return drivers_response_E::init_error;
 	}
 }
 

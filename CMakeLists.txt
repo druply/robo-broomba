@@ -12,6 +12,8 @@ include_directories(app/main)
 include_directories(app/test)
 include_directories(app/utilities)
 include_directories(app/state-estimation)
+include_directories(app/safety-monitor)
+include_directories(app/motion-control)
 
 #set (SOURCES cortexAlinux.cpp)
 
@@ -23,7 +25,9 @@ file(GLOB SOURCES "*.cpp",
                   "app/main/*.cpp",
                   "app/test/*.cpp",
                   "app/utilities/*.cpp",
-                  "app/state-estimation/*.cpp")
+                  "app/state-estimation/*.cpp",
+                  "app/motion-control/*.cpp",
+                  "app/safety-monitor/*.cpp")
 
 #add the executables
 add_executable(${PROJECT_NAME} ${SOURCES})

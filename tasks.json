@@ -12,7 +12,7 @@
     "rt-tasks": [
         {
             "task0" : "DeviceStep",
-            "rate" :  "2"            
+            "rate" :  "20"            
         },
         {
             "task0" : "DeviceLoop",
