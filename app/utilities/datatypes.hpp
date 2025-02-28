@@ -24,10 +24,8 @@ enum class device_status_E {
 };
 
 enum class SystemEvent {
-    init_pass,
-    test_init_pass,
-    test_init_fail,
-    run_fail,
+    pass,
+    fail,
     stop,
     wait
 };

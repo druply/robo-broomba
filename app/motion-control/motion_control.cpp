@@ -8,7 +8,7 @@ void motionControlInit(void) {
     DataPoolWriteLeftMotorThrottle(static_cast<throttle_T>(0.0));
 
     DataPoolWriteVelocityCmd(static_cast<velocity_T>(0.0));
-    DataPoolWriteSteeringAngle(static_cast<angle_T>(0.0));
+    DataPoolWriteSteeringAngleCmd(static_cast<angle_T>(0.0));
 
 }
 
@@ -30,6 +30,10 @@ static void rotateRobot(action_E action, angle_T angle) {
     if (action == action_E::rotate_left) {
         
     }
+
+    else if (action == action_E::rotate_right) {
+
+    }
 }
 
 
@@ -40,7 +44,7 @@ void motionControlStep(void) {
 
     sys_state_local = DataPoolReadSystemStatus(); // get current system state
     action_local = DataPoolReadMotionActionCmd(); // get current motion action command
-    angle_local = DataPoolReadSteeringAngle();
+    angle_local = DataPoolReadSteeringAngleCmd();
 
     if ((sys_state_local == SystemState::run) || (sys_state_local == SystemState::test_init)) {
         // do some valid stuff
@@ -59,14 +63,15 @@ void motionControlStep(void) {
         };
 
     }
+    else {
+        DataPoolWriteRightMotorThrottle(static_cast<throttle_T>(0.0));
+        DataPoolWriteLeftMotorThrottle(static_cast<throttle_T>(0.0));
+    }
 }
 
 
 void setMotionControlCmd(motion_control_T cmd) {
 
-    DataPoolWriteVelocityCmd(cmd.velocity);
-    DataPoolWriteSteeringAngle(cmd.angle);
-    DataPoolWriteGear(cmd.gear);
-    DataPoolWriteMotionActionCmd(cmd.action);
+
 
 }

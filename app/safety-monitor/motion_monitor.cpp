@@ -8,14 +8,14 @@
 state array
 */
 std::vector<test_init_states_T> init_states = {
-    {testInitStates::stop, testInitEvents::move_forward, testInitStates::forward},
-    {testInitStates::forward, testInitEvents::pass, testInitStates::forward}
+    {testInitStates::stop, testInitEvents::done, testInitStates::forward},
+    {testInitStates::forward, testInitEvents::done, testInitStates::backward}
 };
 
 
 testInitStates curr_state;
 testInitEvents local_event;
-motion_control_T motion_cmd;
+//motion_control_T motion_cmd;
 
 void testInit(void) {
     curr_state = testInitStates::stop;
@@ -45,10 +45,14 @@ static testInitEvents moveForward(void) {
     static int valid_state_ctr = 0;
     static int invalid_state_ctr = 0;
 
-    motion_cmd.action = action_E::move;
-    motion_cmd.gear = gear_E::forward;
-    motion_cmd.velocity = 0.2;
-    motion_cmd.angle = 0;
+    //motion_cmd.action = action_E::move;
+    DataPoolWriteMotionActionCmd(action_E::move);
+    //motion_cmd.gear = gear_E::forward;
+    DataPoolWriteGearCmd(gear_E::forward);
+    //motion_cmd.velocity = 0.2;
+    DataPoolWriteVelocityCmd(0.2);
+    //motion_cmd.angle = 0;
+    DataPoolWriteSteeringAngleCmd(0.0);
 
     event_res = testInitEvents::null;
 
@@ -65,7 +69,7 @@ static testInitEvents moveForward(void) {
         (DataPoolReadLeftMotorThrottle() > 0.0) )  
     {
         if (distance >= 0.3) {
-            event_res = testInitEvents::pass;
+            event_res = testInitEvents::done;
         }
         invalid_state_ctr = 0;
     }
@@ -80,7 +84,7 @@ static testInitEvents moveForward(void) {
     }
 
     if (invalid_state_ctr == 50) {
-        event_res = testInitEvents::failed;
+        event_res = testInitEvents::fail;
     }
 
     return event_res;
@@ -99,41 +103,52 @@ SystemEvent testInitStep(void) {
     static int ctr = 0;
     transitionState(); // transition to next state
 
+    system_event_res = SystemEvent::wait;
+
     switch(curr_state) {
 
         case testInitStates::stop:
-            system_event_res = SystemEvent::wait;
-            motion_cmd.action = action_E::stop;
-            motion_cmd.gear = gear_E::forward;
-            motion_cmd.velocity = 0.0;
-            motion_cmd.angle = 0.0;
+
+            // motion_cmd.action = action_E::stop;
+            DataPoolWriteMotionActionCmd(action_E::stop);
+            //motion_cmd.gear = gear_E::forward;
+            DataPoolWriteGearCmd(gear_E::forward);
+            //motion_cmd.velocity = 0.0;
+            DataPoolWriteVelocityCmd(0.0);
+            //motion_cmd.angle = 0.0;
+            DataPoolWriteSteeringAngleCmd(0.0);
 
             ctr++;
             if (ctr == 50) {
-                local_event = testInitEvents::move_forward;
+                local_event = testInitEvents::done;
+                ctr = 0;
             }
             break;
 
         case testInitStates::forward:
-            system_event_res = SystemEvent::wait;    
+
             local_event = moveForward();
+
+            if (local_event == testInitEvents::fail) {
+                system_event_res = SystemEvent::fail;
+            }
             
             break;
 
         case testInitStates::backward:
-        system_event_res = SystemEvent::wait;
+        system_event_res = SystemEvent::pass; // remove!!
         break;
 
         case testInitStates::right:
-        system_event_res = SystemEvent::wait;
+
         break;
 
         case testInitStates::left:
-        system_event_res = SystemEvent::wait;
+
         break;
 
         case testInitStates::done:
-        system_event_res = SystemEvent::test_init_pass;
+        system_event_res = SystemEvent::pass;
         break;
 
         default:
@@ -141,7 +156,7 @@ SystemEvent testInitStep(void) {
 
     };
 
-    setMotionControlCmd(motion_cmd); // pass motion control cmd
+    //setMotionControlCmd(motion_cmd); // pass motion control cmd
 
 
     return system_event_res;

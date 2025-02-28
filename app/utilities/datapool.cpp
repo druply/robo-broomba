@@ -89,19 +89,19 @@ void DataPoolWriteEgoYawAngle(angle_T ego_angle_local) {
 Motion control
 */
 
-angle_T DataPoolReadSteeringAngle(void) {
+angle_T DataPoolReadSteeringAngleCmd(void) {
   return steering_angle_dpool;
 }
 
-void DataPoolWriteSteeringAngle(angle_T ego_angle_local) {
+void DataPoolWriteSteeringAngleCmd(angle_T ego_angle_local) {
   steering_angle_dpool = ego_angle_local;
 }
 
-gear_E DataPoolReadGear(void) {
+gear_E DataPoolReadGearCmd(void) {
   return gear_dpool;
 }
 
-void DataPoolWriteGear(gear_E gear_local) {
+void DataPoolWriteGearCmd(gear_E gear_local) {
   gear_dpool = gear_local;
 }
 
@@ -112,6 +112,14 @@ void DataPoolWriteMotionActionCmd(action_E cmd_local) {
   action_cmd_dpool = cmd_local;
 }
 
+
+velocity_T DataPoolReadVelocityCmd(void) {
+  return velocity_dpool;
+}
+
+void DataPoolWriteVelocityCmd(velocity_T velocity_cmd_local) {
+  velocity_dpool = velocity_cmd_local;
+}
 
 
 
@@ -125,14 +133,6 @@ void DataPoolWriteEBreak(emergency_break_T ebreak_local) {
 
 
 
-
-velocity_T DataPoolReadVelocityCmd(void) {
-  return velocity_dpool;
-}
-
-void DataPoolWriteVelocityCmd(velocity_T velocity_cmd_local) {
-  velocity_dpool = velocity_cmd_local;
-}
 
 
 

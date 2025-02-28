@@ -9,9 +9,9 @@
 state array
 */
 std::vector<system_states_T> states = {
-    {SystemState::init, SystemEvent::init_pass, SystemState::test_init},
-    {SystemState::test_init, SystemEvent::test_init_pass, SystemState::run},
-    {SystemState::test_init, SystemEvent::test_init_fail, SystemState::diag}
+    {SystemState::init, SystemEvent::pass, SystemState::test_init},
+    {SystemState::test_init, SystemEvent::pass, SystemState::run},
+    {SystemState::test_init, SystemEvent::fail, SystemState::diag}
 };
 
 
@@ -52,7 +52,7 @@ void stateHandlerStep(void) {
 
         case SystemState::init:
             // do stuf at init
-            system_event = SystemEvent::init_pass;
+            system_event = SystemEvent::pass;
             SystemLog("state handler init");
 
             break;

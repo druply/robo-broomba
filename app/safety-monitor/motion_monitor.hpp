@@ -3,13 +3,8 @@
 // Test init data types
 
 enum class testInitEvents {
-    move_forward,
-    move_backward,
-    rotate_right,
-    rotate_left,
-    finish,
-    failed,
-    pass,
+    fail,
+    done,
     null
 };
 

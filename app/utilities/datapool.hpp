@@ -26,9 +26,6 @@ Perception
 velocity_T DataPoolReadEgoVelocity(void);
 void DataPoolWriteEgoVelocity(velocity_T ego_velocity_local);
 
-velocity_T DataPoolReadVelocityCmd(void);
-void DataPoolWriteVelocityCmd(velocity_T velocity_cmd_local);
-
 distance_T DataPoolReadEgoDistance(void);
 void DataPoolWriteEgoDistance(distance_T ego_distance_local);
 
@@ -39,20 +36,20 @@ void DataPoolWriteEgoYawAngle(angle_T ego_angle_local);
 /*
 Motion control
 */
-angle_T DataPoolReadSteeringAngle(void);
-void DataPoolWriteSteeringAngle(angle_T steering_local);
+angle_T DataPoolReadSteeringAngleCmd(void);
+void DataPoolWriteSteeringAngleCmd(angle_T steering_local);
 
 SystemState DataPoolReadSystemStatus(void);
 void DataPoolWriteSystemStatus(SystemState system_status_local);
 
-gear_E DataPoolReadGear(void);
-void DataPoolWriteGear(gear_E gear_local);
+gear_E DataPoolReadGearCmd(void);
+void DataPoolWriteGearCmd(gear_E gear_local);
 
 action_E DataPoolReadMotionActionCmd(void);
-void DataPoolWriteMotionActionCmd(action_E gear_local);
+void DataPoolWriteMotionActionCmd(action_E cmd_local);
 
-
-
+velocity_T DataPoolReadVelocityCmd(void);
+void DataPoolWriteVelocityCmd(velocity_T velocity_cmd_local);
 
 emergency_break_T DataPoolReadEBreak(void);
 void DataPoolWriteEBreak(emergency_break_T ebreak_local);
