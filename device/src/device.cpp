@@ -35,9 +35,10 @@ void DeviceInit(void) {
     else {
         SystemLog("wiringpi configured");
     }
-
+    // Initializing drivers 
     if ((encoderDrvInit() == drivers_response_E::init_error)||
-        (motorDrvInit()   == drivers_response_E::init_error))  {
+        (motorDrvInit()   == drivers_response_E::init_error) ||
+        (mpu9250Init() == drivers_response_E::init_error))  {
             init_error = true; // error occured
             state_curr = device_status_E::error; //enter init error state
     }
