@@ -1,7 +1,8 @@
 
-//#define ENABLE_TEST
+#define ENABLE_TEST
 
 #ifdef ENABLE_TEST
-    #define TEST_ODOMETRY
+    //#define TEST_ODOMETRY
+    #define LOGGER_TEST
 
 #endif
