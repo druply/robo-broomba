@@ -15,6 +15,7 @@ gear_E gear_dpool;
 
 static ecoderCounter_T encoder_counter1_dpool;
 static ecoderCounter_T encoder_counter2_dpool;
+imu_T imu_dpool;
 
 SystemState system_status_dpool;
 system_status_T ecu_status_dpool;
@@ -56,6 +57,16 @@ void DataPoolWriteEncoderCounter2(ecoderCounter_T encoder_counter2_local) {
   encoder_counter2_dpool = encoder_counter2_local;
 }
 
+/*
+* Imu Data
+*/
+void DataPoolWriteImuData(imu_T *imu_local) {
+  imu_dpool = *imu_local;
+}
+
+void DataPoolReadImuData(imu_T *imu_local) {
+  *imu_local = imu_dpool;
+}
 
 /*
 Perception

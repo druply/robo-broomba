@@ -19,6 +19,8 @@ void DataPoolWriteEncoderCounter1(ecoderCounter_T encoder_counter1_local);
 ecoderCounter_T DataPoolReadEncoderCounter2(void);
 void DataPoolWriteEncoderCounter2(ecoderCounter_T encoder_counter2_dpool);
 
+void DataPoolWriteImuData(imu_T *imu_local);
+void DataPoolReadImuData(imu_T *imu_local);
 
 /*
 Perception
