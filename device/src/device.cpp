@@ -11,6 +11,7 @@
 
 #include "encoder_drv.hpp"
 #include "motor_diff_drv.hpp"
+#include "mpu9250_drv.hpp"
 #include "datatypes.hpp"
 #include "datapool.hpp"
 #include "sys_mon.hpp"
@@ -62,6 +63,8 @@ static void readSensorData(void) {
     DataPoolWriteEncoderCounter1(encoder1_ctr);
     /* Write encoder 2 value to datapool */
     DataPoolWriteEncoderCounter2(encoder2_ctr);
+    /* Write imu data to datapool */
+    DataPoolWriteImuData(&imu_data);
 
 }
 
@@ -101,8 +104,11 @@ void DeviceStep(void) {
           break;
 
         case device_status_E::ready :
+            mpu9250Step(); // read IMU data
             readSensorData(); // get sensor data
+
             MainApp(); // run main app
+            
             writeSensorData(); // wrtie sensor/actuator data
 
             break;
